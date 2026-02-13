@@ -82,32 +82,48 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center justify-center gap-6 md:gap-8 z-10 text-center px-6"
+          className="flex flex-col items-center justify-center gap-4 md:gap-5 z-10 text-center px-6"
         >
           <motion.span
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display font-medium text-lg md:text-xl lg:text-2xl tracking-tight text-white/85"
-            style={{ letterSpacing: '-0.02em' }}
-          >
-            Dalla penna dei monaci alle corone degli Zar
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2.2, delay: 2.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display font-black text-3xl md:text-5xl lg:text-6xl tracking-tighter text-[var(--text-primary)]"
+            className="font-display font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter text-[var(--text-primary)]"
             style={{ letterSpacing: '-0.04em' }}
           >
-            Questo è ZИАК – la tua guida nell&apos;alfabeto cirillico
+            ZИАК
           </motion.span>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2.2, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-2"
+          >
+            <motion.span
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2.2, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
+              className="font-display font-medium text-sm md:text-base text-white/80"
+              style={{ letterSpacing: '-0.01em' }}
+            >
+              La tua guida nell&apos;alfabeto cirillico.
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2.2, delay: 3, ease: [0.22, 1, 0.36, 1] }}
+              className="font-display font-medium text-sm md:text-base text-white/80"
+              style={{ letterSpacing: '-0.01em' }}
+            >
+              Dalle penne dei monaci alle corone degli Zar
+            </motion.span>
+          </motion.div>
           <motion.button
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 3.8, ease: [0.22, 1, 0.36, 1] }}
             onClick={handleSkip}
-            className="mt-6 h-[48px] px-6 flex items-center justify-center bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[var(--accent-primary)] hover:text-black transition-colors shadow-xl"
+            className="mt-2 h-[48px] px-6 flex items-center justify-center bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[var(--accent-primary)] hover:text-black transition-colors shadow-xl"
             aria-label="Inizia ora"
           >
             INIZIA ORA

@@ -36,12 +36,12 @@ const Timeline: React.FC<TimelineProps> = ({ data }) => {
 
           {/* Origin Card */}
           <div className="bg-[#F2F2F2] p-6 border border-[#111111]/5">
-            <h3 className="text-xs font-bold uppercase tracking-widest mb-3 text-[#111111]/50">Origine</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-3 text-[#111111]/50">Invenzione</h3>
             <p className="font-serif text-lg text-[#111111]">
               {data.origin}
             </p>
             <div className="mt-4 flex items-center space-x-2 text-[#D62828]">
-               <span className="font-glagolitic text-3xl">{data.glagolitic}</span>
+               <span className="font-glagolitic text-4xl">{data.glagolitic}</span>
                <span className="text-sm font-mono opacity-50">⟶ {data.char}</span>
             </div>
           </div>

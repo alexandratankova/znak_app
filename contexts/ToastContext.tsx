@@ -47,7 +47,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25 }}
               className={`
-                flex items-center justify-start gap-3 px-5 py-3 rounded-md font-semibold text-sm tracking-wide shadow-lg text-left min-w-[280px]
+                flex items-center justify-start gap-3 px-6 py-4 rounded-md font-semibold text-sm md:text-base tracking-wide shadow-lg text-left min-w-[min(290px,calc(100vw-3rem))]
                 ${toast.type === 'success' 
                   ? 'bg-[var(--toast-success-bg)] text-[var(--toast-success-text)]' 
                   : 'bg-[var(--toast-error-bg)] text-[var(--toast-error-text)]'}

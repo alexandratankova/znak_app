@@ -173,8 +173,9 @@ const WordSoul: React.FC<WordSoulProps> = ({ data }) => {
                 <span className="text-sm font-bold uppercase">...</span>
               ) : (
                 <>
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <path d="M6 8.5a6.5 6.5 0 0 1 13 0c0 4.5-2.5 8-5 10-1.5 1.5-3.5 2.5-5.5 2.5a5.5 5.5 0 0 1-5.5-5.5V8.5" />
+                    <path d="M12 6v6l4 2" />
                   </svg>
                   <span className="text-sm font-bold uppercase">Ascolta</span>
                 </>

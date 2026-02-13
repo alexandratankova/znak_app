@@ -15,6 +15,7 @@ interface HeroLetterProps {
 const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete, onOpenGame, onOpenWordSoul }) => {
   const [isTracing, setIsTracing] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [justCompletedTrace, setJustCompletedTrace] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ w: 400, h: 400 });
   const toast = useToast();
@@ -37,6 +38,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
 
   useEffect(() => {
     setIsTracing(false);
+    setJustCompletedTrace(false);
     window.speechSynthesis?.cancel();
     setIsPlaying(false);
   }, [data.id]);
@@ -52,6 +54,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
 
   const handleTraceComplete = () => {
     setIsTracing(false);
+    setJustCompletedTrace(true);
     onTraceComplete(data.id);
     toast.showToast('Corretto! Continua così!', 'success');
   };
@@ -65,23 +68,6 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-muted)]">Fonetica</span>
           <span className="text-lg font-mono font-medium">{data.phonetic}</span>
         </div>
-        <button
-          onClick={speakLetter}
-          disabled={isPlaying}
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all disabled:opacity-50 flex-shrink-0"
-          aria-label="Ascolta pronuncia"
-        >
-          {isPlaying ? (
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <rect x="6" y="4" width="4" height="16" rx="1" />
-              <rect x="14" y="4" width="4" height="16" rx="1" />
-            </svg>
-          ) : (
-            <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          )}
-        </button>
       </div>
 
       {/* --- MAIN CANVAS AREA --- */}
@@ -101,11 +87,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
         </div>
         <div className="absolute top-6 right-6 md:top-8 md:right-8 text-right">
              <span className="block text-[10px] font-bold uppercase text-[var(--text-muted)] mb-1">Glagolitico</span>
-             <span className="font-glagolitic text-2xl text-[var(--accent-primary)]">{data.glagolitic}</span>
-        </div>
-        <div className="absolute bottom-6 right-6 md:bottom-8 md:right-8 text-right">
-            <span className="block text-[10px] font-bold uppercase text-[var(--text-muted)] mb-1">Anno</span>
-            <span className="font-mono text-sm">IX Sec.</span>
+             <span className="font-glagolitic text-3xl text-[var(--accent-primary)]">{data.glagolitic}</span>
         </div>
 
         {/* --- THE LETTER (Font Based) --- */}
@@ -146,8 +128,29 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
           )}
         </AnimatePresence>
 
-        {/* Control Group: Gioca & Traccia Buttons */}
-        <div className={`z-40 flex items-center gap-4 flex-shrink-0 ${isTraced ? 'mt-4 relative' : 'absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-8 md:left-8'}`}>
+        {/* Ascolta – solo icona, angolo destro */}
+        <button
+          onClick={speakLetter}
+          disabled={isPlaying}
+          className="absolute bottom-6 right-6 md:bottom-8 md:right-8 z-40 h-[48px] w-[48px] flex items-center justify-center rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all shadow-sm disabled:opacity-50"
+          aria-label="Ascolta pronuncia"
+        >
+          {isPlaying ? (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <rect x="6" y="4" width="4" height="16" rx="1" />
+              <rect x="14" y="4" width="4" height="16" rx="1" />
+            </svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <path d="M3 9v6h4l5 5V4L7 9H3z" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            </svg>
+          )}
+        </button>
+
+        {/* Control Group: Gioca & Traccia – distanza 12px */}
+        <div className={`z-40 flex items-center gap-3 flex-shrink-0 ${isTraced ? 'mt-4 relative' : 'absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-8 md:left-8'}`}>
            
            {/* Gioca Button */}
            <button
@@ -182,7 +185,9 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
               className="w-full border-t border-[var(--border-subtle)] mt-6 pt-6 flex flex-col items-center"
             >
               <p className="text-sm md:text-base text-[var(--text-secondary)] text-center mb-4 max-w-md">
-                Ora che hai dominato il segno, scopri come prende vita nella parola.
+                {justCompletedTrace
+                  ? 'Ora che hai dominato il segno, scopri come prende vita nella parola.'
+                  : 'Hai già dominato il segno, scopri come prende vita nella parola.'}
               </p>
               <button
                 onClick={onOpenWordSoul}

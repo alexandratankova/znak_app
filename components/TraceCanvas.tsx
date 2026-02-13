@@ -8,6 +8,8 @@ interface TraceCanvasProps {
   strokeColor?: string;
 }
 
+const STROKES_REQUIRED = 4; // Tratti minimi per completare – dà tempo di ricalcare la lettera
+
 const TraceCanvas: React.FC<TraceCanvasProps> = ({ 
   onComplete, 
   width, 
@@ -43,13 +45,13 @@ const TraceCanvas: React.FC<TraceCanvasProps> = ({
     if (isDrawing) {
       setIsDrawing(false);
       ctxRef.current?.beginPath();
-      setStrokeCount(prev => prev + 1);
-      
-      // Simulating completion after 2 strokes for this demo
-      // In a real app, we would calculate pixel overlap with the target shape
-      if (strokeCount >= 1) {
-        setTimeout(onComplete, 500);
-      }
+      setStrokeCount(prev => {
+        const next = prev + 1;
+        if (next >= STROKES_REQUIRED) {
+          setTimeout(onComplete, 800);
+        }
+        return next;
+      });
     }
   };
 

@@ -23,10 +23,10 @@
   --feedback-error-bg: #fca5a5;
   --feedback-error-fg: #ffffff;
 
-  /* Toast: colori più spenti, in linea con la pallette */
-  --toast-success-bg: #166534;
+  /* Toast: dark = luminosi, light = spenti (override in [data-theme]) */
+  --toast-success-bg: #22c55e;
   --toast-success-text: #ffffff;
-  --toast-error-bg: #991b1b;
+  --toast-error-bg: #ef4444;
   --toast-error-text: #ffffff;
 
   --border-subtle: rgba(255, 255, 255, 0.06);
@@ -90,16 +90,16 @@
   --text-muted: #6b6b6b;
   --accent-primary: #D4AF37;
   --accent-secondary: #FFD700;
-  --accent-success: #22c55e;
-  --feedback-success: #22c55e;
+  --accent-success: #4ade80;
+  --feedback-success: #4ade80;
   --feedback-success-bg: #86efac;
   --feedback-success-fg: #ffffff;
-  --feedback-error: #ef4444;
+  --feedback-error: #f87171;
   --feedback-error-bg: #fca5a5;
   --feedback-error-fg: #ffffff;
-  --toast-success-bg: #166534;
+  --toast-success-bg: #22c55e;
   --toast-success-text: #ffffff;
-  --toast-error-bg: #991b1b;
+  --toast-error-bg: #ef4444;
   --toast-error-text: #ffffff;
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.12);

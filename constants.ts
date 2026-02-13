@@ -16,7 +16,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Nell'antico sistema numerico cirillico, Az valeva 1. Il nome stesso 'Az' significava 'Io' in antico slavo ecclesiastico, ponendo l'identità personale all'inizio assoluto dell'alfabeto."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'La prima lettera, simbolo dell\'io e dell\'inizio divino.', poeticText: 'Io sono il principio.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'La prima lettera, simbolo dell\'io e dell\'inizio divino.', poeticText: 'Io sono il principio.' },
       { period: 'Evoluzione', year: 'XIV Secolo', description: 'Forme più arrotondate nei manoscritti slavi.', poeticText: 'Un arco verso il cielo.' },
       { period: 'Modernità', year: '1708', description: 'Riformata simile alla A latina.', poeticText: 'Semplicità universale.' }
     ],
@@ -37,7 +37,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Il nome 'Buki' è collegato alla parola 'Bukva' (lettera) e all'albero di faggio, su cui venivano incisi i primi segni runici pre-cristiani."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Originariamente significava "Lettere" o "Libro".', poeticText: 'La conoscenza incisa.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Originariamente significava "Lettere" o "Libro".', poeticText: 'La conoscenza incisa.' },
       { period: 'Medioevo', year: 'XV Secolo', description: 'La parte superiore si allungò orizzontalmente.', poeticText: 'Un tetto che protegge il suono.' },
       { period: 'Modernità', year: 'XVIII Secolo', description: 'Distinta nettamente dalla "V" (В).', poeticText: 'Identità consolidata.' }
     ],
@@ -58,7 +58,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Il nome imperativo 'Vedi' significa 'Sappi' o 'Vedi'. L'alfabeto iniziava quindi con un messaggio: 'Io (Az) Lettere (Buki) Conosco (Vedi)'."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Sapere" o "Vedere".', poeticText: 'L\'occhio della mente.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Sapere" o "Vedere".', poeticText: 'L\'occhio della mente.' },
       { period: 'Stile Ustav', year: 'XIII Secolo', description: 'Forme squadrate e monumentali.', poeticText: 'Pietra su pietra.' },
       { period: 'Pietro il Grande', year: '1708', description: 'Arrotondata per la stampa civile.', poeticText: 'Curve morbide di inchiostro.' }
     ],
@@ -79,7 +79,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "La parola 'Glagol' significava 'Verbo' o 'Parola'. I missionari Cirillo e Metodio la scelsero per sottolineare l'importanza della predicazione orale."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Parlare" o "Verbo".', poeticText: 'La parola che crea.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Parlare" o "Verbo".', poeticText: 'La parola che crea.' },
       { period: 'Corsivo', year: 'XVII Secolo', description: 'Diventa più fluida nella scrittura veloce.', poeticText: 'Un fiume che scorre.' },
       { period: 'Modernità', year: 'XX Secolo', description: 'Linee essenziali e ortogonali.', poeticText: 'L\'angolo della ragione.' }
     ],
@@ -100,7 +100,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Significa 'Bene'. È una lettera solida, quadrata, che visivamente comunica stabilità e rettitudine morale."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Bene" o "Buono".', poeticText: 'La base della virtù.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Bene" o "Buono".', poeticText: 'La base della virtù.' },
       { period: 'Manoscritti', year: 'XVI Secolo', description: 'Sviluppa le "gambe" lunghe caratteristiche.', poeticText: 'Radici profonde nella terra.' },
       { period: 'Tipografia', year: '1800', description: 'Base piatta e squadrata nei caratteri serif.', poeticText: 'Un tempio solido.' }
     ],
@@ -121,7 +121,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "La terza persona singolare del verbo essere: 'È'. Una lettera che afferma l'esistenza stessa."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "È" o "Esiste".', poeticText: 'Io esisto qui.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "È" o "Esiste".', poeticText: 'Io esisto qui.' },
       { period: 'Medioevo', year: 'XII Secolo', description: 'Usata ampiamente nei testi ecclesiastici.', poeticText: 'Luce divina.' },
       { period: 'Oggi', year: 'XXI Secolo', description: 'Una delle vocali più frequenti.', poeticText: 'Presenza costante.' }
     ],
@@ -163,7 +163,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Il nome Zhivete significa 'Vivete' (imperativo plurale). È un simbolo di vita, energia e fertilità nel folklore tipografico."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Vivere".', poeticText: 'Il pulsare della vita.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Vivere".', poeticText: 'Il pulsare della vita.' },
       { period: 'Simbolismo', year: 'Medioevo', description: 'Simbolo di vita e complessità.', poeticText: 'Raggi che si incrociano.' },
       { period: 'Forma', year: '1708', description: 'Simmetria perfetta a sei bracci.', poeticText: 'Stella terrestre.' }
     ],
@@ -184,7 +184,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Zemlya significa 'Terra'. Insieme a Zhivete e Ze (S), forma una triade di suoni sibilanti che danno alle lingue slave il loro carattere distintivo."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Terra".', poeticText: 'Il suolo che ci sostiene.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Terra".', poeticText: 'Il suolo che ci sostiene.' },
       { period: 'Evoluzione', year: 'XIV Secolo', description: 'Assunse la forma simile al numero 3.', poeticText: 'Curve sinuose.' },
       { period: 'Oggi', year: 'XX Secolo', description: 'Distinta dalla E corsiva.', poeticText: 'Suono vibrante.' }
     ],
@@ -205,7 +205,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "In russo moderno funziona come una congiunzione 'e'. È il connettore universale della lingua, unendo parole e frasi."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Che" o "Il quale".', poeticText: 'Connessione.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Che" o "Il quale".', poeticText: 'Connessione.' },
       { period: 'Cambio', year: 'XIII Secolo', description: 'La barra orizzontale divenne diagonale.', poeticText: 'Ascesa.' },
       { period: 'Moderna', year: '1708', description: 'Simile alla N specchiata latina.', poeticText: 'Specchio ingannevole.' }
     ],
@@ -247,7 +247,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Il nome 'Kako' significa 'Come'. È una lettera interrogativa e comparativa per eccellenza."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Come".', poeticText: 'Paragone.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Come".', poeticText: 'Paragone.' },
       { period: 'Forma', year: 'Medioevo', description: 'Stabile nei secoli.', poeticText: 'Struttura affidabile.' },
       { period: 'Oggi', year: 'XX Secolo', description: 'Identica alla K latina.', poeticText: 'Universalità.' }
     ],
@@ -268,7 +268,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Significa 'Gente' o 'Popolo'. È una lettera sociale, che rappresenta la collettività nel nome stesso."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Gente" o "Persone".', poeticText: 'Un tetto per la comunità.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Gente" o "Persone".', poeticText: 'Un tetto per la comunità.' },
       { period: 'Slavo', year: 'XIV Secolo', description: 'La cima si appiattì ("El" quadrata).', poeticText: 'Un podio solido.' },
       { period: 'Oggi', year: 'XX Secolo', description: 'Esiste in forma a punta (Λ) o quadrata (Л).', poeticText: 'Variante stilistica.' }
     ],
@@ -289,7 +289,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Myslete: l'imperativo 'Pensate'. Un invito alla riflessione intellettuale posto proprio al centro dell'alfabeto."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Pensare".', poeticText: 'Riflessione interiore.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Pensare".', poeticText: 'Riflessione interiore.' },
       { period: 'Calligrafia', year: 'XVII Secolo', description: 'Linee morbide nei corsivi.', poeticText: 'Onde mentali.' },
       { period: 'Stampa', year: '1708', description: 'Simile alla M latina.', poeticText: 'Simmetria.' }
     ],
@@ -310,7 +310,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Significa 'Nostro'. In contrapposizione a 'Vedi' (Tu sai) e 'Az' (Io), Nash rappresenta la proprietà collettiva e l'appartenenza."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Nostro".', poeticText: 'Appartenenza.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Nostro".', poeticText: 'Appartenenza.' },
       { period: 'Cambio', year: 'XVI Secolo', description: 'La barra diagonale divenne orizzontale.', poeticText: 'Un ponte tra noi.' },
       { period: 'Confusione', year: 'XVIII Secolo', description: 'Identica alla H latina ma suono diverso.', poeticText: 'Falso amico.' }
     ],
@@ -331,7 +331,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Significa 'Lui' o 'Quello'. È anche un prefisso comune che indica un'azione che copre l'intera superficie di qualcosa."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Lui" o "Quello".', poeticText: 'Totalità.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Lui" o "Quello".', poeticText: 'Totalità.' },
       { period: 'Forma', year: 'Sempre', description: 'Il cerchio non è mai cambiato.', poeticText: 'Eterno ritorno.' },
       { period: 'Uso', year: 'Oggi', description: 'Vocale fondamentale.', poeticText: 'Il centro del suono.' }
     ],
@@ -352,7 +352,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Nella corsiva russa minuscola, assomiglia a una 'n' latina, creando un altro punto di confusione per i principianti."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Pace" o "Riposo".', poeticText: 'Quiete statica.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Pace" o "Riposo".', poeticText: 'Quiete statica.' },
       { period: 'Stile', year: 'XVI Secolo', description: 'Squadrata e architettonica.', poeticText: 'Un portale.' },
       { period: 'Modernità', year: '1708', description: 'Base della stabilità.', poeticText: 'Pilastri.' }
     ],
@@ -373,7 +373,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Rtsy è un imperativo arcaico: 'Parla!' o 'Dì!'. È la lettera dell'oratore, che vibra e richiede attenzione."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Dì" o "Parla".', poeticText: 'L\'ordine di parlare.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Dì" o "Parla".', poeticText: 'L\'ordine di parlare.' },
       { period: 'Confusione', year: 'XVIII Secolo', description: 'Sembra una P latina ma vibra.', poeticText: 'Inganno visivo.' },
       { period: 'Suono', year: 'Oggi', description: 'Forte e vibrante.', poeticText: 'Energia pura.' }
     ],
@@ -394,7 +394,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Slovo significa 'Parola'. È la radice del termine 'Slavi' (Sloveni), coloro che possiedono la parola, in contrapposizione ai 'Nemtsy' (Tedeschi/Muti), coloro che non parlano la lingua comprensibile."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Parola".', poeticText: 'Il verbo umano.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Parola".', poeticText: 'Il verbo umano.' },
       { period: 'Forma', year: 'Medioevo', description: 'Aperta come una luna crescente.', poeticText: 'Accoglienza.' },
       { period: 'Oggi', year: 'XX Secolo', description: 'Identica alla C latina.', poeticText: 'Semplicità curva.' }
     ],
@@ -415,7 +415,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Tverdo significa 'Solido', 'Duro' o 'Fermo'. È la lettera della certezza e della determinazione."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Solido" o "Fermo".', poeticText: 'Il martello che batte.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Solido" o "Fermo".', poeticText: 'Il martello che batte.' },
       { period: 'Calligrafia', year: 'XVII Secolo', description: 'A tre gambe nel corsivo (m minuscola).', poeticText: 'Supporto triplo.' },
       { period: 'Standard', year: '1708', description: 'T maiuscola classica.', poeticText: 'Equilibrio perfetto.' }
     ],
@@ -436,7 +436,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "La sua coda discendente permette ai calligrafi di aggiungere fioriture eleganti sotto la riga di base."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Inizialmente un digramma (O+Y).', poeticText: 'Doppia origine.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Inizialmente un digramma (O+Y).', poeticText: 'Doppia origine.' },
       { period: 'Semplificazione', year: '1708', description: 'Divenne un singolo glifo.', poeticText: 'Unità.' },
       { period: 'Forma', year: 'Oggi', description: 'Simile alla y latina.', poeticText: 'Convergenza.' }
     ],
@@ -457,7 +457,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Il nome 'Fert' potrebbe derivare dall'onomatopea del soffio, o dalla posizione delle mani sui fianchi ('stare in fert'), che la forma della lettera ricorda."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Nome incerto, forse onomatopeico.', poeticText: 'Mani sui fianchi.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Nome incerto, forse onomatopeico.', poeticText: 'Mani sui fianchi.' },
       { period: 'Uso', year: 'Medioevo', description: 'Solo per parole straniere.', poeticText: 'L\'intruso.' },
       { period: 'Rarità', year: 'Oggi', description: 'Poca frequenza nel lessico slavo nativo.', poeticText: 'Esotico.' }
     ],
@@ -478,7 +478,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "In antico, 'Kher' era usata come abbreviazione per Cristo (Khristos), conferendole una valenza sacra nonostante il suono aspro."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Abbreviazione divina.', poeticText: 'Incrocio sacro.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Abbreviazione divina.', poeticText: 'Incrocio sacro.' },
       { period: 'Simbolismo', year: 'Sempre', description: 'La croce di Sant\'Andrea.', poeticText: 'Cancellazione e unione.' },
       { period: 'Forma', year: 'Oggi', description: 'Simmetria diagonale perfetta.', poeticText: 'X.' }
     ],
@@ -499,7 +499,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "È un suono molto comune nelle lingue slave, spesso alla fine delle parole, dando un senso di chiusura netta e precisa."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Suono non greco, origine semitica.', poeticText: 'Radice orientale.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Suono non greco, origine semitica.', poeticText: 'Radice orientale.' },
       { period: 'Forma', year: 'XVII Secolo', description: 'Simile alla P con una coda.', poeticText: 'L\'uncino.' },
       { period: 'Oggi', year: 'XX Secolo', description: 'Dura e precisa.', poeticText: 'Zoccolo.' }
     ],
@@ -520,7 +520,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Il nome antico 'Cherv' significava 'Verme' o 'Rosso' (dal verme della cocciniglia usato per la tintura). Una connessione inaspettata tra suono e colore."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Significa "Verme" (forma antica).', poeticText: 'La coppa.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Significa "Verme" (forma antica).', poeticText: 'La coppa.' },
       { period: 'Evoluzione', year: 'XIV Secolo', description: 'Assomiglia al numero 4.', poeticText: 'Sedia aperta.' },
       { period: 'Oggi', year: 'XXI Secolo', description: 'Tratto distintivo slavo.', poeticText: 'Quattro.' }
     ],
@@ -541,7 +541,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "La Shin ebraica rappresenta un dente; la Sha cirillica ne conserva l'aspetto 'mordace' e multiplo."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Dal semitico "Dente".', poeticText: 'Il tridente.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Dal semitico "Dente".', poeticText: 'Il tridente.' },
       { period: 'Forma', year: 'Sempre', description: 'Tre aste verticali unite.', poeticText: 'Molteplicità.' },
       { period: 'Suono', year: 'Oggi', description: 'Un sibilo ampio e basso.', poeticText: 'Silenzio rumoroso.' }
     ],
@@ -562,7 +562,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "È la 'prova del fuoco' per gli stranieri. La sua pronuncia varia: 'sht' in bulgaro, 'shch' in ucraino, e un lungo e morbido 'shh' in russo moderno."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Una fusione di suoni.', poeticText: 'Il tridente con la coda.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Una fusione di suoni.', poeticText: 'Il tridente con la coda.' },
       { period: 'Evoluzione', year: 'XVIII Secolo', description: 'Stabilizzata con la piccola coda destra.', poeticText: 'Appendice.' },
       { period: 'Oggi', year: 'XX Secolo', description: 'Suono lungo e morbido.', poeticText: 'Flusso continuo.' }
     ],
@@ -583,7 +583,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Chiamato 'Segno Duro'. È un muro di silenzio all'interno della parola, che costringe il lettore a una breve pausa glottale."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Vocale ultra-breve in antico slavo.', poeticText: 'Il respiro mozzato.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Vocale ultra-breve in antico slavo.', poeticText: 'Il respiro mozzato.' },
       { period: 'Riforma', year: '1918', description: 'Rimossa alla fine delle parole.', poeticText: 'Il grande silenzio.' },
       { period: 'Funzione', year: 'Oggi', description: 'Separa consonante e vocale.', poeticText: 'Il divisore.' }
     ],
@@ -604,7 +604,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Spesso descritta come il suono che si fa quando si viene colpiti allo stomaco. È l'anima oscura e profonda della fonetica russa."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Fusione di due lettere.', poeticText: 'Due in uno.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Fusione di due lettere.', poeticText: 'Due in uno.' },
       { period: 'Unicità', year: 'Sempre', description: 'Non inizia mai una parola.', poeticText: 'L\'eterno secondo.' },
       { period: 'Suono', year: 'Oggi', description: 'Difficile per i non nativi.', poeticText: 'L\'anima russa.' }
     ],
@@ -625,7 +625,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "Senza questa lettera, molte distinzioni grammaticali e semantiche crollerebbero. È piccola, silenziosa, ma potente."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Vocale ultra-breve anteriore.', poeticText: 'La carezza.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Vocale ultra-breve anteriore.', poeticText: 'La carezza.' },
       { period: 'Funzione', year: 'Oggi', description: 'Palatalizza la consonante precedente.', poeticText: 'Dolcezza.' },
       { period: 'Forma', year: '1708', description: 'Simile alla b latina.', poeticText: 'Piccola e potente.' }
     ],
@@ -667,7 +667,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "La sua forma ricorda il pianeta Saturno o una testa di profilo. È una lettera 'rotonda' e musicale."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Greco OI ligatura.', poeticText: 'Connessione circolare.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Greco OI ligatura.', poeticText: 'Connessione circolare.' },
       { period: 'Forma', year: '1708', description: 'I collegata a O.', poeticText: 'Il pianeta e il satellite.' },
       { period: 'Suono', year: 'Oggi', description: 'Vocale iotizzata.', poeticText: 'Gioventù.' }
     ],
@@ -688,7 +688,7 @@ export const ALPHABET_DATA: LetterData[] = [
       curiosity: "È l'ultima lettera dell'alfabeto, ma significa 'Io'. Un paradosso poetico: l'individuo è alla fine, umile ma essenziale."
     },
     timeline: [
-      { period: 'Origine', year: 'IX Secolo', description: 'Evoluzione della Yus piccola (ѧ).', poeticText: 'Il mio essere.' },
+      { period: 'Invenzione', year: 'IX Secolo', description: 'Evoluzione della Yus piccola (ѧ).', poeticText: 'Il mio essere.' },
       { period: 'Riforma', year: '1708', description: 'Pietro il Grande la ridisegnò come R rovesciata.', poeticText: 'Specchio della R.' },
       { period: 'Significato', year: 'Sempre', description: 'Ultima lettera, ma significa "Io".', poeticText: 'La fine è l\'inizio.' }
     ],
