@@ -8,12 +8,26 @@ import InkGame from './components/InkGame';
 import WordSoulModal from './components/WordSoulModal';
 import IntroAnimation, { hasSeenIntro, resetIntroSeen } from './components/IntroAnimation';
 
+const THEME_STORAGE_KEY = 'znak-theme';
+
 const App: React.FC = () => {
   const [showIntro, setShowIntro] = useState(() => !hasSeenIntro());
   const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
   const [isGameOpen, setIsGameOpen] = useState(false);
   const [isWordSoulOpen, setIsWordSoulOpen] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem(THEME_STORAGE_KEY) as 'dark' | 'light') || 'dark';
+    }
+    return 'dark';
+  });
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
 
   const handleIntroComplete = () => setShowIntro(false);
   const handleRewatchIntro = () => {
@@ -46,6 +60,8 @@ const App: React.FC = () => {
         letters={ALPHABET_DATA}
         currentIndex={currentLetterIndex}
         onSelect={setCurrentLetterIndex}
+        theme={theme}
+        onThemeToggle={toggleTheme}
       />
 
       {/* 2. Main Workspace */}

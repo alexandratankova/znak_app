@@ -7,9 +7,11 @@ interface NavigationProps {
   currentIndex: number;
   onSelect: (index: number) => void;
   onRewatchIntro?: () => void;
+  theme?: 'dark' | 'light';
+  onThemeToggle?: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect, onRewatchIntro }) => {
+const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect, onRewatchIntro, theme = 'dark', onThemeToggle }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -30,16 +32,32 @@ const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect
     <nav className="h-[80px] w-full md:h-full md:w-[120px] lg:w-[160px] flex-shrink-0 bg-[var(--bg-secondary)] border-b md:border-b-0 md:border-r border-[var(--border-subtle)] md:fixed md:left-0 md:top-0 md:bottom-0 z-40 flex md:flex-col overflow-hidden">
       
       {/* Brand / Logo Area */}
-      <div className="hidden md:flex flex-col h-20 items-center justify-center border-b border-[var(--border-subtle)] bg-[var(--bg-elevated)] gap-1">
-         <span className="font-black text-xl tracking-tighter text-[var(--text-primary)]">CYR</span>
-         {onRewatchIntro && (
-           <button
-             onClick={onRewatchIntro}
-             className="text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors"
-           >
-             Rivedi intro
-           </button>
-         )}
+      <div className="hidden md:flex flex-col shrink-0">
+         <div className="flex flex-col items-center justify-center py-4 px-2 border-b border-[var(--border-subtle)] bg-[var(--bg-elevated)] gap-1">
+           <span className="font-black text-xl tracking-tighter text-[var(--text-primary)]">ZИАК</span>
+           <span className={`text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded-full ${theme === 'dark' ? 'bg-rose-500/25 text-rose-400' : 'bg-rose-400/30 text-rose-600'}`}>
+             beta
+           </span>
+         </div>
+         <div className="flex flex-col items-center gap-1 py-3 px-2 border-b border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
+           {onThemeToggle && (
+             <button
+               onClick={onThemeToggle}
+               className="text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors"
+               aria-label={theme === 'dark' ? 'Passa al tema chiaro' : 'Passa al tema scuro'}
+             >
+               {theme === 'dark' ? 'Tema chiaro' : 'Tema scuro'}
+             </button>
+           )}
+           {onRewatchIntro && (
+             <button
+               onClick={onRewatchIntro}
+               className="text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors"
+             >
+               Rivedi intro
+             </button>
+           )}
+         </div>
       </div>
 
       <div 

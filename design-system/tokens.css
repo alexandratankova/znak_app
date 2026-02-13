@@ -65,3 +65,21 @@
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.2);
   --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.3);
 }
+
+/* Light theme – rosso al posto dell'oro */
+[data-theme="light"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f0f0f0;
+  --bg-elevated: #ffffff;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #737373;
+
+  --accent-primary: #b91c1c;
+  --accent-secondary: #dc2626;
+  --accent-success: #2d7d4a;
+
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+}
