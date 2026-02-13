@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { LetterData, GameState } from '../types';
+import { useToast } from '../contexts/ToastContext';
 
 interface InkGameProps {
   letters: LetterData[];
@@ -8,9 +9,11 @@ interface InkGameProps {
 }
 
 const InkGame: React.FC<InkGameProps> = ({ letters, onClose }) => {
+  const toast = useToast();
   const [targetLetter, setTargetLetter] = useState<LetterData | null>(null);
   const [options, setOptions] = useState<LetterData[]>([]);
   const [gameState, setGameState] = useState<GameState>('playing');
+  const [wrongSelectedId, setWrongSelectedId] = useState<string | null>(null);
   
   // Initialize Round
   useEffect(() => {
@@ -30,6 +33,7 @@ const InkGame: React.FC<InkGameProps> = ({ letters, onClose }) => {
     setTargetLetter(target);
     setOptions(shuffledOptions);
     setGameState('playing');
+    setWrongSelectedId(null);
   };
 
   const handleOptionClick = (selected: LetterData) => {
@@ -37,10 +41,17 @@ const InkGame: React.FC<InkGameProps> = ({ letters, onClose }) => {
 
     if (selected.id === targetLetter?.id) {
       setGameState('success');
+      setWrongSelectedId(null);
+      toast.showToast('Corretto! Continua così!', 'success');
       setTimeout(startNewRound, 2000);
     } else {
+      setWrongSelectedId(selected.id);
       setGameState('error');
-      setTimeout(() => setGameState('playing'), 800);
+      toast.showToast('Riprova', 'error');
+      setTimeout(() => {
+        setGameState('playing');
+        setWrongSelectedId(null);
+      }, 800);
     }
   };
 
@@ -96,42 +107,15 @@ const InkGame: React.FC<InkGameProps> = ({ letters, onClose }) => {
                   border-2 text-6xl md:text-8xl font-display
                   transition-all duration-300
                   ${gameState === 'success' && option.id === targetLetter.id 
-                    ? 'bg-[var(--accent-secondary)] text-[var(--bg-primary)] border-[var(--accent-secondary)]'
-                    : gameState === 'error' && option.id !== targetLetter.id 
-                      ? 'opacity-20 border-transparent' 
+                    ? 'bg-[var(--feedback-success)] text-[var(--feedback-success-fg)] border-[var(--feedback-success)]'
+                    : gameState === 'error' && option.id === wrongSelectedId 
+                      ? 'bg-[var(--feedback-error)]/20 border-2 border-[var(--feedback-error)]' 
                       : 'bg-transparent border-[var(--border-subtle)] hover:border-[var(--accent-primary)] text-[var(--text-primary)]'}
                 `}
               >
                 {option.char}
               </motion.button>
             ))}
-          </div>
-
-          <div className="h-16 mt-12 flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              {gameState === 'success' && (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="bg-[var(--accent-secondary)] text-[var(--bg-primary)] px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wider"
-                >
-                  Corretto
-                </motion.div>
-              )}
-              {gameState === 'error' && (
-                <motion.div
-                  key="error"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="text-[var(--accent-primary)] font-bold uppercase tracking-widest text-xs"
-                >
-                  Riprova
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
         </motion.div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ALPHABET_DATA } from './constants';
 import Navigation from './components/Navigation';
@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
   const [isGameOpen, setIsGameOpen] = useState(false);
   const [isWordSoulOpen, setIsWordSoulOpen] = useState(false);
+  const [tracedLetterIds, setTracedLetterIds] = useState<Set<string>>(() => new Set());
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window !== 'undefined') {
       return (localStorage.getItem(THEME_STORAGE_KEY) as 'dark' | 'light') || 'dark';
@@ -35,7 +36,12 @@ const App: React.FC = () => {
     setShowIntro(true);
   };
 
+  const handleTraceComplete = useCallback((letterId: string) => {
+    setTracedLetterIds((prev) => new Set(prev).add(letterId));
+  }, []);
+
   const currentLetter = ALPHABET_DATA[currentLetterIndex];
+  const isLetterTraced = tracedLetterIds.has(currentLetter.id);
 
   return (
     <>
@@ -71,6 +77,8 @@ const App: React.FC = () => {
         <div className="w-full md:w-3/5 h-[55vh] md:h-full border-b md:border-b-0 md:border-r border-[var(--border-subtle)] relative">
           <HeroLetter 
             data={currentLetter} 
+            isTraced={isLetterTraced}
+            onTraceComplete={handleTraceComplete}
             onOpenGame={() => setIsGameOpen(true)}
             onOpenWordSoul={() => setIsWordSoulOpen(true)}
           />

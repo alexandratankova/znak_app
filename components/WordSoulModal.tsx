@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LetterData } from '../types';
+import { useToast } from '../contexts/ToastContext';
 
 interface WordSoulModalProps {
   data: LetterData;
@@ -9,9 +10,11 @@ interface WordSoulModalProps {
 
 const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
   const wordData = data.wordInAction;
+  const toast = useToast();
   const [slots, setSlots] = useState<string[]>([]);
   const [tiles, setTiles] = useState<string[]>([]);
   const [isSolved, setIsSolved] = useState(false);
+  const [showWrong, setShowWrong] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const initGame = useCallback(() => {
@@ -24,6 +27,7 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
     setSlots(new Array(targetChars.length).fill(''));
     setTiles(allTiles.sort(() => Math.random() - 0.5));
     setIsSolved(false);
+    setShowWrong(false);
   }, [wordData]);
 
   useEffect(() => {
@@ -51,12 +55,24 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
 
   useEffect(() => {
     if (!wordData || isSolved) return;
-    if (slots.every((s) => s !== '')) {
-      const guess = slots.join('').toLowerCase();
-      if (guess === wordData.phonetic.toLowerCase()) {
-        setIsSolved(true);
-      }
+    const target = wordData.phonetic.toLowerCase().trim();
+    if (slots.length !== target.length || !slots.every((s) => s !== '')) {
+      setShowWrong(false);
+      return;
     }
+    const guess = slots.join('').toLowerCase().trim();
+    if (guess === target) {
+      setShowWrong(false);
+      setIsSolved(true);
+      toast.showToast('Corretto! Continua così!', 'success');
+    } else {
+      setShowWrong(true);
+      toast.showToast('Riprova', 'error');
+      const t = setTimeout(() => setShowWrong(false), 1200);
+      return () => clearTimeout(t);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- toast.showToast is stable
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- toast.showToast is stable
   }, [slots, isSolved, wordData]);
 
   const speakWord = () => {
@@ -88,13 +104,13 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000]/95 backdrop-blur-xl"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg-primary)]/95 backdrop-blur-xl"
     >
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 20, opacity: 0 }}
-        className="w-full max-w-4xl p-6 md:p-12 relative bg-[#000000] border border-[var(--accent-primary)]/30 shadow-2xl"
+        className="w-full max-w-4xl p-6 md:p-12 relative bg-[var(--bg-secondary)] border border-[var(--border-subtle)] shadow-2xl"
       >
         {/* Header Bar – identico a Ink Game */}
         <div className="flex justify-between items-center mb-10 md:mb-12 border-b-2 border-[var(--accent-primary)] pb-4">
@@ -185,7 +201,7 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
                 className="space-y-6"
               >
                 {/* Traduzione */}
-                <p className="text-2xl md:text-4xl font-bold text-[var(--accent-primary)]">
+                <p className="text-2xl md:text-4xl font-bold text-[var(--text-primary)]">
                   {wordData.meaning}
                 </p>
 
@@ -222,7 +238,7 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
                   </button>
                 </div>
               </motion.div>
-            ) : (
+            ) : !showWrong ? (
               <motion.p
                 key="hint"
                 initial={{ opacity: 0 }}
@@ -231,7 +247,7 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
               >
                 Clicca sulle lettere per comporle negli spazi e completare la trascrizione fonetica
               </motion.p>
-            )}
+            ) : null}
           </AnimatePresence>
         </motion.div>
       </motion.div>

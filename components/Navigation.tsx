@@ -35,7 +35,7 @@ const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect
       <div className="hidden md:flex flex-col shrink-0">
          <div className="flex flex-col items-center justify-center py-4 px-2 border-b border-[var(--border-subtle)] bg-[var(--bg-elevated)] gap-1">
            <span className="font-black text-xl tracking-tighter text-[var(--text-primary)]">ZИАК</span>
-           <span className={`text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded-full ${theme === 'dark' ? 'bg-rose-500/25 text-rose-400' : 'bg-rose-400/30 text-rose-600'}`}>
+           <span className={`text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-full ${theme === 'dark' ? 'bg-rose-500/25 text-rose-400' : 'bg-rose-400/35 text-rose-600'}`}>
              beta
            </span>
          </div>

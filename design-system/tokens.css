@@ -15,6 +15,20 @@
   --accent-secondary: #FFD700;
   --accent-success: #4ade80;
 
+  /* Feedback: verde scuro per solo testo, verde/rosso chiari per sfondi toast (testo nero) */
+  --feedback-success: #22c55e;
+  --feedback-success-bg: #86efac;
+  --feedback-success-fg: #ffffff;
+  --feedback-error: #ef4444;
+  --feedback-error-bg: #fca5a5;
+  --feedback-error-fg: #ffffff;
+
+  /* Toast: colori più spenti, in linea con la pallette */
+  --toast-success-bg: #166534;
+  --toast-success-text: #ffffff;
+  --toast-error-bg: #991b1b;
+  --toast-error-text: #ffffff;
+
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.12);
 
@@ -76,11 +90,22 @@
   --text-muted: #6b6b6b;
   --accent-primary: #D4AF37;
   --accent-secondary: #FFD700;
+  --accent-success: #22c55e;
+  --feedback-success: #22c55e;
+  --feedback-success-bg: #86efac;
+  --feedback-success-fg: #ffffff;
+  --feedback-error: #ef4444;
+  --feedback-error-bg: #fca5a5;
+  --feedback-error-fg: #ffffff;
+  --toast-success-bg: #166534;
+  --toast-success-text: #ffffff;
+  --toast-error-bg: #991b1b;
+  --toast-error-text: #ffffff;
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.12);
 }
 
-/* Light theme – rosso al posto dell'oro */
+/* Light theme – rosso/bordeaux per accenti */
 [data-theme="light"] {
   --bg-primary: #fafafa;
   --bg-secondary: #f0f0f0;
@@ -92,7 +117,19 @@
 
   --accent-primary: #b91c1c;
   --accent-secondary: #dc2626;
-  --accent-success: #2d7d4a;
+  --accent-success: #15803d;
+
+  /* Feedback: verde scuro per testo, verde/rosso chiari per sfondi toast */
+  --feedback-success: #15803d;
+  --feedback-success-bg: #86efac;
+  --feedback-success-fg: #ffffff;
+  --feedback-error: #b91c1c;
+  --feedback-error-bg: #fca5a5;
+  --feedback-error-fg: #ffffff;
+  --toast-success-bg: #15803d;
+  --toast-success-text: #ffffff;
+  --toast-error-bg: #b91c1c;
+  --toast-error-text: #ffffff;
 
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.15);

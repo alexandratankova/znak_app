@@ -2,19 +2,22 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LetterData } from '../types';
 import TraceCanvas from './TraceCanvas';
+import { useToast } from '../contexts/ToastContext';
 
 interface HeroLetterProps {
   data: LetterData;
+  isTraced: boolean;
+  onTraceComplete: (letterId: string) => void;
   onOpenGame: () => void;
   onOpenWordSoul: () => void;
 }
 
-const HeroLetter: React.FC<HeroLetterProps> = ({ data, onOpenGame, onOpenWordSoul }) => {
+const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete, onOpenGame, onOpenWordSoul }) => {
   const [isTracing, setIsTracing] = useState(false);
-  const [isCompleted, setIsCompleted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ w: 400, h: 400 });
+  const toast = useToast();
 
   const speakLetter = () => {
     if (isPlaying || typeof window === 'undefined' || !window.speechSynthesis) return;
@@ -32,9 +35,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, onOpenGame, onOpenWordSou
     window.speechSynthesis.speak(utterance);
   };
 
-  // Reset state when letter changes
   useEffect(() => {
-    setIsCompleted(false);
     setIsTracing(false);
     window.speechSynthesis?.cancel();
     setIsPlaying(false);
@@ -51,7 +52,8 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, onOpenGame, onOpenWordSou
 
   const handleTraceComplete = () => {
     setIsTracing(false);
-    setIsCompleted(true);
+    onTraceComplete(data.id);
+    toast.showToast('Corretto! Continua così!', 'success');
   };
 
   return (
@@ -83,7 +85,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, onOpenGame, onOpenWordSou
       </div>
 
       {/* --- MAIN CANVAS AREA --- */}
-      <div ref={containerRef} className={`flex-1 relative flex flex-col items-center p-8 ${isCompleted ? 'overflow-y-auto justify-start' : 'overflow-hidden justify-center'}`}>
+      <div ref={containerRef} className={`flex-1 relative flex flex-col items-center p-8 ${isTraced ? 'overflow-y-auto justify-start' : 'overflow-hidden justify-center'}`}>
         
         {/* Technical Grid Lines */}
         <div className="absolute inset-0 pointer-events-none">
@@ -107,12 +109,12 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, onOpenGame, onOpenWordSou
         </div>
 
         {/* --- THE LETTER (Font Based) --- */}
-        <div className={`relative z-10 flex items-center justify-center select-none flex-shrink-0 ${isCompleted ? 'w-[180px] h-[200px] md:w-[220px] md:h-[240px]' : 'w-[300px] h-[350px] md:w-[400px] md:h-[400px]'}`}>
+        <div className={`relative z-10 flex items-center justify-center select-none flex-shrink-0 ${isTraced ? 'w-[180px] h-[200px] md:w-[220px] md:h-[240px]' : 'w-[300px] h-[350px] md:w-[400px] md:h-[400px]'}`}>
             
             {/* 1. Base Guide (Text) */}
             <motion.div 
-               className={`font-display leading-none ${isCompleted ? 'text-[8rem] md:text-[10rem]' : 'text-[15rem] md:text-[20rem]'}`}
-               animate={{ color: isCompleted ? 'var(--text-primary)' : 'var(--text-muted)' }}
+               className={`font-display leading-none ${isTraced ? 'text-[8rem] md:text-[10rem]' : 'text-[15rem] md:text-[20rem]'}`}
+               animate={{ color: isTraced ? 'var(--text-primary)' : 'var(--text-muted)' }}
                transition={{ duration: 0.8 }}
             >
               {data.char}
@@ -120,7 +122,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, onOpenGame, onOpenWordSou
 
             {/* 2. Trace Canvas Overlay */}
             <AnimatePresence>
-              {!isCompleted && isTracing && (
+              {!isTraced && isTracing && (
                 <TraceCanvas 
                   width={300} 
                   height={350}
@@ -144,8 +146,8 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, onOpenGame, onOpenWordSou
           )}
         </AnimatePresence>
 
-        {/* Control Group: Play & Trace Buttons */}
-        <div className={`z-40 flex items-center gap-4 flex-shrink-0 ${isCompleted ? 'mt-4 relative' : 'absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-8 md:left-8'}`}>
+        {/* Control Group: Gioca & Traccia Buttons */}
+        <div className={`z-40 flex items-center gap-4 flex-shrink-0 ${isTraced ? 'mt-4 relative' : 'absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:bottom-8 md:left-8'}`}>
            
            {/* Gioca Button */}
            <button
@@ -155,31 +157,24 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, onOpenGame, onOpenWordSou
               <span className="text-xs font-bold uppercase tracking-widest">Gioca</span>
             </button>
 
-           {/* Traccia Button */}
-           {!isTracing && !isCompleted && (
+           {/* Traccia Button - sempre visibile, disabilitato se già ricalcato */}
+           {!isTracing && (
                <button 
-                 onClick={() => setIsTracing(true)}
-                 className="h-[48px] px-6 flex items-center justify-center bg-[var(--text-primary)] text-[var(--bg-primary)] rounded-full uppercase text-xs font-bold tracking-widest hover:bg-[var(--accent-primary)] transition-colors shadow-xl"
+                 onClick={() => !isTraced && setIsTracing(true)}
+                 disabled={isTraced}
+                 className={`h-[48px] px-6 flex items-center justify-center rounded-full uppercase text-xs font-bold tracking-widest transition-colors shadow-xl
+                   ${isTraced 
+                     ? 'bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-[var(--text-muted)] cursor-not-allowed opacity-70' 
+                     : 'bg-[var(--text-primary)] text-[var(--bg-primary)] hover:bg-[var(--accent-primary)]'}`}
                >
                  Traccia
                </button>
-           )}
-           
-           {/* Completed Label */}
-           {isCompleted && (
-               <motion.div 
-                 initial={{ opacity: 0, x: -10 }}
-                 animate={{ opacity: 1, x: 0 }}
-                 className="h-[48px] flex items-center text-[var(--accent-success)] text-xs font-bold uppercase tracking-widest"
-               >
-                 Completato
-               </motion.div>
            )}
         </div>
 
         {/* Guida Post-Ricalco: CTA per aprire Il cuore della parola */}
         <AnimatePresence>
-          {isCompleted && data.wordInAction && (
+          {isTraced && data.wordInAction && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

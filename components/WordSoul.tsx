@@ -11,6 +11,7 @@ const WordSoul: React.FC<WordSoulProps> = ({ data }) => {
   const [slots, setSlots] = useState<string[]>([]);
   const [tiles, setTiles] = useState<string[]>([]);
   const [isSolved, setIsSolved] = useState(false);
+  const [showWrong, setShowWrong] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const initGame = useCallback(() => {
@@ -23,6 +24,7 @@ const WordSoul: React.FC<WordSoulProps> = ({ data }) => {
     setSlots(new Array(targetChars.length).fill(''));
     setTiles(allTiles.sort(() => Math.random() - 0.5));
     setIsSolved(false);
+    setShowWrong(false);
   }, [wordData]);
 
   React.useEffect(() => {
@@ -50,11 +52,19 @@ const WordSoul: React.FC<WordSoulProps> = ({ data }) => {
 
   React.useEffect(() => {
     if (!wordData || isSolved) return;
-    if (slots.every((s) => s !== '')) {
-      const guess = slots.join('').toLowerCase();
-      if (guess === wordData.phonetic.toLowerCase()) {
-        setIsSolved(true);
-      }
+    const target = wordData.phonetic.toLowerCase().trim();
+    if (slots.length !== target.length || !slots.every((s) => s !== '')) {
+      setShowWrong(false);
+      return;
+    }
+    const guess = slots.join('').toLowerCase().trim();
+    if (guess === target) {
+      setShowWrong(false);
+      setIsSolved(true);
+    } else {
+      setShowWrong(true);
+      const t = setTimeout(() => setShowWrong(false), 1200);
+      return () => clearTimeout(t);
     }
   }, [slots, isSolved, wordData]);
 
@@ -127,7 +137,19 @@ const WordSoul: React.FC<WordSoulProps> = ({ data }) => {
       </div>
 
       <AnimatePresence mode="wait">
-        {isSolved ? (
+        {showWrong ? (
+          <motion.div
+            key="wrong"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="text-center"
+          >
+            <p className="text-sm font-bold text-[var(--feedback-error)] tracking-wide">
+              Riprova
+            </p>
+          </motion.div>
+        ) : isSolved ? (
           <motion.div
             key="solved"
             initial={{ opacity: 0, y: 10 }}
@@ -135,7 +157,10 @@ const WordSoul: React.FC<WordSoulProps> = ({ data }) => {
             exit={{ opacity: 0 }}
             className="text-center"
           >
-            <p className="text-2xl md:text-3xl font-bold text-[var(--accent-primary)] mb-2">
+            <p className="text-sm font-bold text-[var(--feedback-success)] tracking-wide mb-3">
+              Corretto! Continua così!
+            </p>
+            <p className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2">
               {wordData.meaning}
             </p>
             <button
