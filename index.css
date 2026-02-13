@@ -1,0 +1,27 @@
+/* App overrides – font Glagolitic e utility */
+.font-display {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-glagolitic {
+  font-family: 'Noto Sans Glagolitic', sans-serif;
+}
+
+/* LetterHero – font serif elegante per lettere cirilliche singole (stile Ж) */
+.font-letter-hero {
+  font-family: var(--font-letter-hero);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Titoli sezioni – Playfair Display senza shadow */
+.font-titles {
+  font-family: var(--font-letter-hero);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
