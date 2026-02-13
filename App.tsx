@@ -8,6 +8,7 @@ import InkGame from './components/InkGame';
 import WordSoulModal from './components/WordSoulModal';
 import IntroAnimation, { hasSeenIntro, resetIntroSeen } from './components/IntroAnimation';
 import Credits, { CreditsFooter } from './components/Credits';
+import ExpandableHistoryDrawer from './components/ExpandableHistoryDrawer';
 
 const THEME_STORAGE_KEY = 'znak-theme';
 
@@ -73,8 +74,8 @@ const App: React.FC = () => {
             onThemeToggle={toggleTheme}
           />
 
-          <div className="flex-1 flex flex-col md:flex-row relative md:ml-[120px] lg:ml-[160px] min-h-0">
-            <div className="w-full md:w-3/5 h-[55vh] md:h-full border-b md:border-b-0 md:border-r border-[var(--border-subtle)] relative">
+          <div className="flex-1 flex flex-col md:flex-row relative md:ml-[120px] lg:ml-[160px] min-h-0 overflow-hidden">
+            <div className="w-full h-[80dvh] md:flex-none md:w-3/5 md:h-full border-b md:border-b-0 md:border-r border-[var(--border-subtle)] relative">
               <HeroLetter
                 data={currentLetter}
                 isTraced={isLetterTraced}
@@ -84,9 +85,11 @@ const App: React.FC = () => {
               />
             </div>
 
-            <div className="w-full md:w-2/5 h-[45vh] md:h-full bg-[var(--bg-secondary)] overflow-hidden">
+            <div className="hidden md:block md:w-2/5 h-full bg-[var(--bg-secondary)] overflow-hidden">
               <HistoryIdentity data={currentLetter} />
             </div>
+
+            <ExpandableHistoryDrawer data={currentLetter} />
           </div>
         </div>
 

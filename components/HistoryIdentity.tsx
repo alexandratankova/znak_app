@@ -4,6 +4,7 @@ import { LetterData } from '../types';
 
 interface HistoryIdentityProps {
   data: LetterData;
+  embedded?: boolean;
 }
 
 // Interactive Glossary Data
@@ -127,9 +128,9 @@ const InteractiveText: React.FC<{ text: string }> = ({ text }) => {
   );
 };
 
-const HistoryIdentity: React.FC<HistoryIdentityProps> = ({ data }) => {
+const HistoryIdentity: React.FC<HistoryIdentityProps> = ({ data, embedded }) => {
   return (
-    <div className="w-full h-full flex flex-col bg-[var(--bg-secondary)] border-l border-[var(--border-subtle)] overflow-y-auto no-scrollbar">
+    <div className={`w-full h-full flex flex-col bg-[var(--bg-secondary)] overflow-y-auto no-scrollbar ${embedded ? '' : 'border-l border-[var(--border-subtle)]'}`}>
       <AnimatePresence mode="wait">
         <motion.div
           key={data.id}
