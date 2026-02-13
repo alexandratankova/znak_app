@@ -71,9 +71,9 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
         transition={{ duration: 0.3 }}
         onClick={handleSkip}
         className="absolute bottom-6 right-6 z-50 text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors"
-        aria-label="Salta"
+        aria-label="Salta intro"
       >
-        Skip
+        Salta intro
       </motion.button>
 
       <div className="flex-1 flex items-center justify-center relative">
