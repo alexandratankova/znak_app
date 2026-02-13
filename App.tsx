@@ -7,6 +7,7 @@ import HistoryIdentity from './components/HistoryIdentity';
 import InkGame from './components/InkGame';
 import WordSoulModal from './components/WordSoulModal';
 import IntroAnimation, { hasSeenIntro, resetIntroSeen } from './components/IntroAnimation';
+import Credits, { CreditsFooter } from './components/Credits';
 
 const THEME_STORAGE_KEY = 'znak-theme';
 
@@ -16,6 +17,7 @@ const App: React.FC = () => {
   const [isGameOpen, setIsGameOpen] = useState(false);
   const [isWordSoulOpen, setIsWordSoulOpen] = useState(false);
   const [tracedLetterIds, setTracedLetterIds] = useState<Set<string>>(() => new Set());
+  const [isCreditsOpen, setIsCreditsOpen] = useState(false);
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window !== 'undefined') {
       return (localStorage.getItem(THEME_STORAGE_KEY) as 'dark' | 'light') || 'dark';
@@ -57,38 +59,41 @@ const App: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: showIntro ? 0 : 1 }}
         transition={{ duration: 0.5 }}
-        className="h-screen w-screen bg-[var(--bg-primary)] flex flex-col md:flex-row overflow-hidden text-[var(--text-primary)] font-sans selection:bg-[var(--accent-primary)] selection:text-white"
+        className="h-screen w-screen bg-[var(--bg-primary)] flex flex-col overflow-hidden text-[var(--text-primary)] font-sans selection:bg-[var(--accent-primary)] selection:text-white"
         style={{ pointerEvents: showIntro ? 'none' : 'auto' }}
       >
-        {/* 1. Navigation Sidebar */}
-        <Navigation 
-        onRewatchIntro={handleRewatchIntro}
-        letters={ALPHABET_DATA}
-        currentIndex={currentLetterIndex}
-        onSelect={setCurrentLetterIndex}
-        theme={theme}
-        onThemeToggle={toggleTheme}
-      />
-
-      {/* 2. Main Workspace */}
-      <div className="flex-1 flex flex-col md:flex-row h-full relative md:ml-[120px] lg:ml-[160px]">
-        
-        {/* Left/Top: Hero Interaction Area */}
-        <div className="w-full md:w-3/5 h-[55vh] md:h-full border-b md:border-b-0 md:border-r border-[var(--border-subtle)] relative">
-          <HeroLetter 
-            data={currentLetter} 
-            isTraced={isLetterTraced}
-            onTraceComplete={handleTraceComplete}
-            onOpenGame={() => setIsGameOpen(true)}
-            onOpenWordSoul={() => setIsWordSoulOpen(true)}
+        {/* Contenuto principale: Nav + Workspace (flex-1, gap costante sopra il footer) */}
+        <div className="flex-1 flex flex-col md:flex-row min-h-0">
+          <Navigation
+            onRewatchIntro={handleRewatchIntro}
+            letters={ALPHABET_DATA}
+            currentIndex={currentLetterIndex}
+            onSelect={setCurrentLetterIndex}
+            theme={theme}
+            onThemeToggle={toggleTheme}
           />
+
+          <div className="flex-1 flex flex-col md:flex-row relative md:ml-[120px] lg:ml-[160px] min-h-0">
+            <div className="w-full md:w-3/5 h-[55vh] md:h-full border-b md:border-b-0 md:border-r border-[var(--border-subtle)] relative">
+              <HeroLetter
+                data={currentLetter}
+                isTraced={isLetterTraced}
+                onTraceComplete={handleTraceComplete}
+                onOpenGame={() => setIsGameOpen(true)}
+                onOpenWordSoul={() => setIsWordSoulOpen(true)}
+              />
+            </div>
+
+            <div className="w-full md:w-2/5 h-[45vh] md:h-full bg-[var(--bg-secondary)] overflow-hidden">
+              <HistoryIdentity data={currentLetter} />
+            </div>
+          </div>
         </div>
 
-        {/* Right/Bottom: Narrative & History */}
-        <div className="w-full md:w-2/5 h-[45vh] md:h-full bg-[var(--bg-secondary)] overflow-hidden">
-          <HistoryIdentity data={currentLetter} />
-        </div>
-      </div>
+        {/* Footer Credits — in flow, gap costante dall'area interattiva */}
+        <CreditsFooter onOpen={() => setIsCreditsOpen(true)} />
+
+        <Credits isOpen={isCreditsOpen} onClose={() => setIsCreditsOpen(false)} />
 
       <AnimatePresence>
         {isGameOpen && (
@@ -106,7 +111,7 @@ const App: React.FC = () => {
           />
         )}
       </AnimatePresence>
-      </motion.div>
+    </motion.div>
     </>
   );
 };
