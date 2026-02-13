@@ -66,6 +66,20 @@
   --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* Dark theme esplicito – usato dall'intro per essere identico in ogni tema */
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-elevated: #1c1c1c;
+  --text-primary: #f5f5f5;
+  --text-secondary: #9a9a9a;
+  --text-muted: #6b6b6b;
+  --accent-primary: #D4AF37;
+  --accent-secondary: #FFD700;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+}
+
 /* Light theme – rosso al posto dell'oro */
 [data-theme="light"] {
   --bg-primary: #fafafa;
