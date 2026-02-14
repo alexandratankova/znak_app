@@ -81,7 +81,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
       </div>
 
       {/* --- MAIN CANVAS AREA --- */}
-      <div ref={containerRef} className={`flex-1 relative flex flex-col items-center p-8 ${isTraced ? 'overflow-y-auto justify-start' : 'overflow-hidden justify-center'}`}>
+      <div ref={containerRef} className={`flex-1 relative flex flex-col items-center p-6 md:p-8 ${isTraced ? 'overflow-y-auto justify-start' : 'overflow-hidden justify-start md:justify-center'}`}>
         
         {/* Technical Grid Lines */}
         <div className="absolute inset-0 pointer-events-none">
@@ -100,8 +100,8 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
              <span className="font-glagolitic text-3xl text-[var(--accent-primary)]">{data.glagolitic}</span>
         </div>
 
-        {/* Mobile: lettera + pulsanti centrati; desktop: md:contents */}
-        <div className="flex flex-col items-center justify-center gap-4 md:contents">
+        {/* Mobile: lettera + hint + pulsanti; desktop: md:contents */}
+        <div className="flex flex-col items-center justify-center gap-2 md:contents">
         {/* --- THE LETTER (Font Based) --- */}
         <div ref={letterRef} className={`relative z-10 flex items-center justify-center select-none flex-shrink-0 ${isTraced ? 'w-[180px] h-[200px] md:w-[220px] md:h-[240px]' : 'w-[300px] h-[350px] md:w-[400px] md:h-[400px]'}`}>
             
@@ -154,14 +154,14 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
         <AnimatePresence>
           {isTracing && data.wordInAction && (
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="mt-[48px] md:mt-0 md:absolute md:bottom-28 md:left-1/2 md:-translate-x-1/2 text-xs text-[var(--text-muted)] text-center max-w-xs z-20 w-full"
+              className="mt-4 md:mt-0 md:absolute md:bottom-28 md:left-1/2 md:-translate-x-1/2 text-xs text-[var(--text-muted)] text-center max-w-xs z-20 w-full"
             >
               Completa il ricalco per scoprire come questa lettera prende vita nella parola
             </motion.p>
           )}
         </AnimatePresence>
 
-        <div className={`z-40 flex items-center gap-3 flex-shrink-0 ${isTraced ? 'mt-4 relative' : 'relative mt-4 md:absolute md:bottom-8 md:left-8 md:mt-0'}`}>
+        <div className={`z-40 flex items-center gap-3 flex-shrink-0 ${isTraced ? 'mt-2 md:mt-4 relative' : 'relative mt-2 md:mt-4 md:absolute md:bottom-8 md:left-8 md:mt-0'}`}>
            
            {/* Gioca Button */}
            <button
