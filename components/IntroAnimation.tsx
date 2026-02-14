@@ -106,7 +106,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
               className="font-display font-medium text-sm md:text-base text-white/80"
               style={{ letterSpacing: '-0.01em' }}
             >
-              La tua guida nell&apos;alfabeto cirillico.
+              La tua guida nell&apos;alfabeto cirillico
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 16 }}
@@ -115,7 +115,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
               className="font-display font-medium text-sm md:text-base text-white/80"
               style={{ letterSpacing: '-0.01em' }}
             >
-              Dalle penne dei monaci alle corone degli Zar
+              dalle penne dei monaci alle corone degli Zar
             </motion.span>
           </motion.div>
           <motion.button

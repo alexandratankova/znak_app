@@ -23,11 +23,12 @@
   --feedback-error-bg: #fca5a5;
   --feedback-error-fg: #ffffff;
 
-  /* Toast: dark = luminosi, light = spenti (override in [data-theme]) */
-  --toast-success-bg: #22c55e;
-  --toast-success-text: #ffffff;
-  --toast-error-bg: #ef4444;
-  --toast-error-text: #ffffff;
+  /* Toast: rectangolari, tema invertito (dark mode = sfondo chiaro, light = sfondo scuro) */
+  --toast-bg: #F5F5F5;
+  --toast-text: #1a1a1a;
+  --toast-border: rgba(0, 0, 0, 0.15);
+  --toast-success-accent: #22c55e;
+  --toast-error-accent: #ef4444;
 
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.12);
@@ -97,10 +98,11 @@
   --feedback-error: #f87171;
   --feedback-error-bg: #fca5a5;
   --feedback-error-fg: #ffffff;
-  --toast-success-bg: #22c55e;
-  --toast-success-text: #ffffff;
-  --toast-error-bg: #ef4444;
-  --toast-error-text: #ffffff;
+  --toast-bg: #F5F5F5;
+  --toast-text: #1a1a1a;
+  --toast-border: rgba(0, 0, 0, 0.15);
+  --toast-success-accent: #22c55e;
+  --toast-error-accent: #ef4444;
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.12);
 }
@@ -126,10 +128,12 @@
   --feedback-error: #b91c1c;
   --feedback-error-bg: #fca5a5;
   --feedback-error-fg: #ffffff;
-  --toast-success-bg: #15803d;
-  --toast-success-text: #ffffff;
-  --toast-error-bg: #b91c1c;
-  --toast-error-text: #ffffff;
+  /* Light mode: sfondo scuro, testo bianco/crema per contrasto ≥4.5:1 */
+  --toast-bg: #1A1A1A;
+  --toast-text: #f5f5f5;
+  --toast-border: rgba(255, 255, 255, 0.2);
+  --toast-success-accent: #4ade80;
+  --toast-error-accent: #f87171;
 
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.15);

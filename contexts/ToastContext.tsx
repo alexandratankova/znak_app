@@ -37,29 +37,36 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <div className="fixed bottom-6 right-6 z-[9999] flex flex-col gap-2 pointer-events-none items-end">
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 pointer-events-none items-center">
         <AnimatePresence>
           {toasts.map((toast) => (
             <motion.div
               key={toast.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               className={`
-                flex items-center justify-start gap-3 px-6 py-4 rounded-md font-semibold text-sm md:text-base tracking-wide shadow-lg text-left min-w-[min(290px,calc(100vw-3rem))]
+                flex items-center justify-start gap-3 px-6 py-4 font-semibold text-sm md:text-base tracking-wide shadow-lg text-left min-w-[min(290px,calc(100vw-3rem))]
+                rounded-none
+                bg-[var(--toast-bg)] text-[var(--toast-text)]
                 ${toast.type === 'success' 
-                  ? 'bg-[var(--toast-success-bg)] text-[var(--toast-success-text)]' 
-                  : 'bg-[var(--toast-error-bg)] text-[var(--toast-error-text)]'}
+                  ? '[--toast-accent:var(--toast-success-accent)]' 
+                  : '[--toast-accent:var(--toast-error-accent)]'}
               `}
+              style={{ 
+                border: '1px solid var(--toast-border)', 
+                borderLeftWidth: 4, 
+                borderLeftColor: 'var(--toast-accent)' 
+              }}
             >
-              <span className="flex-shrink-0 w-8 h-8 rounded-full bg-white flex items-center justify-center">
+              <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: 'var(--toast-accent)' }}>
                 {toast.type === 'success' ? (
-                  <svg className="w-4 h-4 text-[var(--toast-success-bg)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 ) : (
-                  <svg className="w-4 h-4 text-[var(--toast-error-bg)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 )}

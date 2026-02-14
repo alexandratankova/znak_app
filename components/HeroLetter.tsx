@@ -66,7 +66,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
     setIsTracing(false);
     setJustCompletedTrace(true);
     onTraceComplete(data.id);
-    toast.showToast('Corretto! Continua così!', 'success');
+    toast.showToast('Ottimo lavoro! Ora scopri la parola.', 'success');
   };
 
   return (
@@ -145,6 +145,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
                   width={300} 
                   height={350}
                   onComplete={handleTraceComplete}
+                  onError={() => toast.showToast('Tracciamento interrotto. Riprova con più precisione.', 'error')}
                 />
               )}
             </AnimatePresence>
@@ -209,7 +210,7 @@ const HeroLetter: React.FC<HeroLetterProps> = ({ data, isTraced, onTraceComplete
               <p className="text-sm md:text-base text-[var(--text-secondary)] text-center mb-4 max-w-md">
                 {justCompletedTrace
                   ? 'Ora che hai dominato il segno, scopri come prende vita nella parola.'
-                  : 'Hai già dominato il segno, scopri come prende vita nella parola.'}
+                  : 'Hai già dominato il segno. Scopri come prende vita nella parola.'}
               </p>
               <button
                 onClick={onOpenWordSoul}
