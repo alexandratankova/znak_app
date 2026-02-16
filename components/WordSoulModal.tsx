@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LetterData } from '../types';
 import { useToast } from '../contexts/ToastContext';
@@ -8,9 +8,12 @@ interface WordSoulModalProps {
   onClose: () => void;
 }
 
+const WORD_SOUL_TITLE_ID = 'word-soul-dialog-title';
+
 const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
   const wordData = data.wordInAction;
   const toast = useToast();
+  const closeRef = useRef<HTMLButtonElement>(null);
   const [slots, setSlots] = useState<string[]>([]);
   const [tiles, setTiles] = useState<string[]>([]);
   const [isSolved, setIsSolved] = useState(false);
@@ -33,6 +36,22 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
   useEffect(() => {
     initGame();
   }, [initGame, data.id]);
+
+  useEffect(() => {
+    const prevFocus = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+        prevFocus?.focus();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      prevFocus?.focus();
+    };
+  }, [onClose]);
 
   const handleTileClick = (tile: string, tileIndex: number) => {
     const firstEmpty = slots.findIndex((s) => s === '');
@@ -105,8 +124,12 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg-primary)]/95 backdrop-blur-xl"
+      role="presentation"
     >
       <motion.div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={WORD_SOUL_TITLE_ID}
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 20, opacity: 0 }}
@@ -114,15 +137,16 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
       >
         {/* Header Bar – identico a Ink Game */}
         <div className="flex justify-between items-center mb-10 md:mb-12 border-b-2 border-[var(--accent-primary)] pb-4">
-          <h2 className="font-black text-xl md:text-2xl uppercase tracking-tighter text-[var(--text-primary)]">
+          <h2 id={WORD_SOUL_TITLE_ID} className="font-black text-xl md:text-2xl uppercase tracking-tighter text-[var(--text-primary)]">
             Il cuore della parola
           </h2>
           <button
+            ref={closeRef}
             onClick={onClose}
             className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all"
-            aria-label="Chiudi"
+            aria-label="Chiudi Il cuore della parola"
           >
-            ✕
+            <span aria-hidden="true">✕</span>
           </button>
         </div>
 
@@ -229,7 +253,7 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
                       <span>...</span>
                     ) : (
                       <>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
                           <path d="M6 8.5a6.5 6.5 0 0 1 13 0c0 4.5-2.5 8-5 10-1.5 1.5-3.5 2.5-5.5 2.5a5.5 5.5 0 0 1-5.5-5.5V8.5" />
                           <path d="M12 6v6l4 2" />
                         </svg>

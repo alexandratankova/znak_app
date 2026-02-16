@@ -48,6 +48,14 @@ const App: React.FC = () => {
 
   return (
     <>
+      {/* Skip link – primo elemento focusabile per tastiera (WCAG 2.4.1) */}
+      <a
+        href="#main-content"
+        className="absolute left-4 top-4 z-[100] -translate-y-32 rounded bg-[var(--accent-primary)] px-4 py-2 text-sm font-bold text-black opacity-0 transition-transform focus:translate-y-0 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)]"
+      >
+        Salta al contenuto principale
+      </a>
+
       {/* Introduzione animata – solo al primo accesso */}
       <AnimatePresence>
         {showIntro && (
@@ -64,7 +72,8 @@ const App: React.FC = () => {
         style={{ pointerEvents: showIntro ? 'none' : 'auto' }}
       >
         {/* Contenuto principale: Nav + Workspace (flex-1, gap costante sopra il footer) */}
-        <div className="flex-1 flex flex-col md:flex-row min-h-0">
+        <main id="main-content" className="flex-1 flex flex-col md:flex-row min-h-0" tabIndex={-1} aria-label="Contenuto principale">
+          <h1 className="sr-only">ZИАК - La tua guida nell&apos;alfabeto cirillico</h1>
           <Navigation
             onRewatchIntro={handleRewatchIntro}
             letters={ALPHABET_DATA}
@@ -91,12 +100,12 @@ const App: React.FC = () => {
 
             <ExpandableHistoryDrawer data={currentLetter} />
           </div>
-        </div>
+        </main>
 
         {/* Footer Credits — in flow, gap costante dall'area interattiva */}
         <CreditsFooter onOpen={() => setIsCreditsOpen(true)} />
 
-        <Credits isOpen={isCreditsOpen} onClose={() => setIsCreditsOpen(false)} />
+        <Credits isOpen={isCreditsOpen} onClose={() => setIsCreditsOpen(false)} theme={theme} />
 
       <AnimatePresence>
         {isGameOpen && (

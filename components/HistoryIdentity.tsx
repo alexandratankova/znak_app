@@ -25,10 +25,20 @@ const GLOSSARY: Record<string, { desc: string, img?: string }> = {
 const TOOLTIP_WIDTH = 192;
 const TOOLTIP_GAP = 8;
 
-const GlossaryTerm: React.FC<{ term: string, originalText: string }> = ({ term, originalText }) => {
+const GlossaryTerm: React.FC<{ term: string, originalText: string, idSuffix?: string }> = ({ term, originalText, idSuffix = '' }) => {
+  const tooltipId = `glossary-${term}${idSuffix}`;
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0, arrowUp: true });
   const triggerRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen || !triggerRef.current) return;
@@ -65,10 +75,18 @@ const GlossaryTerm: React.FC<{ term: string, originalText: string }> = ({ term, 
   return (
     <span
       ref={triggerRef}
+      role="button"
+      tabIndex={0}
       className="relative inline-block cursor-help group"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
       onClick={() => setIsOpen(!isOpen)}
+      onFocus={() => setIsOpen(true)}
+      onBlur={() => setIsOpen(false)}
+      onKeyDown={(e) => e.key === 'Enter' && setIsOpen(!isOpen)}
+      aria-expanded={isOpen}
+      aria-describedby={isOpen ? tooltipId : undefined}
+      aria-label={`${term}: ${originalText}, premi Invio per la definizione`}
     >
       <span className="border-b border-[var(--accent-primary)]/40 group-hover:border-[var(--accent-primary)] group-hover:text-[var(--accent-primary)] transition-colors font-medium">
         {originalText}
@@ -86,6 +104,8 @@ const GlossaryTerm: React.FC<{ term: string, originalText: string }> = ({ term, 
               left: position.left,
               width: TOOLTIP_WIDTH,
             }}
+            role="tooltip"
+            id={tooltipId}
             className="bg-[var(--bg-elevated)] text-[var(--text-primary)] text-xs p-3 rounded shadow-xl z-[100] pointer-events-none border border-[var(--border-subtle)]"
           >
             <div className="font-bold mb-1 text-[var(--accent-primary)] uppercase tracking-wider">{term}</div>
@@ -120,7 +140,7 @@ const InteractiveText: React.FC<{ text: string }> = ({ text }) => {
         );
 
         if (foundKey && /^[a-zA-ZÀ-ÿ]+$/.test(cleanPart)) {
-           return <GlossaryTerm key={i} term={foundKey} originalText={part} />;
+           return <GlossaryTerm key={i} term={foundKey} originalText={part} idSuffix={`-${i}`} />;
         }
         return <span key={i}>{part}</span>;
       })}
@@ -141,7 +161,7 @@ const HistoryIdentity: React.FC<HistoryIdentityProps> = ({ data, embedded }) => 
           className="flex flex-col min-h-full"
         >
           {/* Editorial Header */}
-          <div className="p-8 md:p-12 pb-6">
+          <div className="p-8 md:p-12 pt-[64px] pb-6">
              <div className="mb-4">
                 <span className="font-display text-[32px] font-bold text-[var(--text-muted)] leading-[1.1] block">
                   Storia e identità

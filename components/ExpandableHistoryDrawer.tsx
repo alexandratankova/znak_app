@@ -44,6 +44,7 @@ const ExpandableHistoryDrawer: React.FC<ExpandableHistoryDrawerProps> = ({ data 
           stroke="currentColor"
           strokeWidth="2"
           viewBox="0 0 24 24"
+          aria-hidden="true"
           animate={{ rotate: isExpanded ? 180 : 0 }}
           transition={{ duration: 0.25 }}
         >

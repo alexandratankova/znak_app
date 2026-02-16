@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { LetterData, GameState } from '../types';
 import { useToast } from '../contexts/ToastContext';
@@ -8,8 +8,11 @@ interface InkGameProps {
   onClose: () => void;
 }
 
+const INK_GAME_TITLE_ID = 'ink-game-dialog-title';
+
 const InkGame: React.FC<InkGameProps> = ({ letters, onClose }) => {
   const toast = useToast();
+  const closeRef = useRef<HTMLButtonElement>(null);
   const [targetLetter, setTargetLetter] = useState<LetterData | null>(null);
   const [options, setOptions] = useState<LetterData[]>([]);
   const [gameState, setGameState] = useState<GameState>('playing');
@@ -20,6 +23,23 @@ const InkGame: React.FC<InkGameProps> = ({ letters, onClose }) => {
     startNewRound();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!targetLetter) return;
+    const prevFocus = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+        prevFocus?.focus();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      prevFocus?.focus();
+    };
+  }, [onClose, targetLetter]);
 
   const startNewRound = () => {
     const randomIdx = Math.floor(Math.random() * letters.length);
@@ -63,20 +83,26 @@ const InkGame: React.FC<InkGameProps> = ({ letters, onClose }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg-primary)]/95 backdrop-blur-xl"
+      role="presentation"
     >
-      <div className="w-full max-w-4xl p-6 md:p-12 relative bg-[var(--bg-secondary)] border border-[var(--border-subtle)] shadow-2xl">
-        
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={INK_GAME_TITLE_ID}
+        className="w-full max-w-4xl p-6 md:p-12 relative bg-[var(--bg-secondary)] border border-[var(--border-subtle)] shadow-2xl"
+      >
         {/* Header Bar */}
         <div className="flex justify-between items-center mb-12 border-b-2 border-[var(--accent-primary)] pb-4">
-           <h2 className="font-black text-xl md:text-2xl uppercase tracking-tighter text-[var(--text-primary)]">
+           <h2 id={INK_GAME_TITLE_ID} className="font-black text-xl md:text-2xl uppercase tracking-tighter text-[var(--text-primary)]">
              The Ink Game
            </h2>
            <button 
+             ref={closeRef}
              onClick={onClose}
              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] transition-all"
-             aria-label="Chiudi"
+             aria-label="Chiudi The Ink Game"
            >
-             ✕
+             <span aria-hidden="true">✕</span>
            </button>
         </div>
 
@@ -95,13 +121,14 @@ const InkGame: React.FC<InkGameProps> = ({ letters, onClose }) => {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-3 gap-4 md:gap-8" role="group" aria-label="Scegli la lettera corrispondente al suono">
             {options.map((option) => (
               <motion.button
                 key={option.id}
                 onClick={() => handleOptionClick(option)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label={`Scegli lettera ${option.char} (${option.name})`}
                 className={`
                   aspect-square flex items-center justify-center
                   border-2 text-6xl md:text-8xl font-display

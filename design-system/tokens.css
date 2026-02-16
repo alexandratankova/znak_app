@@ -23,12 +23,13 @@
   --feedback-error-bg: #fca5a5;
   --feedback-error-fg: #ffffff;
 
-  /* Toast: rectangolari, tema invertito (dark mode = sfondo chiaro, light = sfondo scuro) */
-  --toast-bg: #F5F5F5;
-  --toast-text: #1a1a1a;
-  --toast-border: rgba(0, 0, 0, 0.15);
+  /* Toast default (dark): sfondo nero, verde/rosso accessi */
+  --toast-bg: #0a0a0a;
+  --toast-text: #f5f5f5;
+  --toast-border: rgba(255, 255, 255, 0.15);
   --toast-success-accent: #22c55e;
   --toast-error-accent: #ef4444;
+  --toast-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.5), 0 4px 16px -4px rgba(0, 0, 0, 0.3);
 
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.12);
@@ -41,7 +42,7 @@
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
-  --text-lg: 1.125rem;
+  --text-lg: 1.25rem;
   --text-xl: 1.5rem;
   --text-2xl: 2rem;
   --text-display: clamp(3rem, 8vw, 6rem);
@@ -98,11 +99,13 @@
   --feedback-error: #f87171;
   --feedback-error-bg: #fca5a5;
   --feedback-error-fg: #ffffff;
-  --toast-bg: #F5F5F5;
-  --toast-text: #1a1a1a;
-  --toast-border: rgba(0, 0, 0, 0.15);
+  /* Toast dark: sfondo nero, verde acceso (success), rosso acceso (error) */
+  --toast-bg: #0a0a0a;
+  --toast-text: #f5f5f5;
+  --toast-border: rgba(255, 255, 255, 0.15);
   --toast-success-accent: #22c55e;
   --toast-error-accent: #ef4444;
+  --toast-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.5), 0 4px 16px -4px rgba(0, 0, 0, 0.3);
   --border-subtle: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.12);
 }
@@ -128,12 +131,13 @@
   --feedback-error: #b91c1c;
   --feedback-error-bg: #fca5a5;
   --feedback-error-fg: #ffffff;
-  /* Light mode: sfondo scuro, testo bianco/crema per contrasto ≥4.5:1 */
-  --toast-bg: #1A1A1A;
-  --toast-text: #f5f5f5;
-  --toast-border: rgba(255, 255, 255, 0.2);
-  --toast-success-accent: #4ade80;
-  --toast-error-accent: #f87171;
+  /* Toast light: sfondo bianco, verde/rosso adatti allo sfondo chiaro */
+  --toast-bg: #ffffff;
+  --toast-text: #1a1a1a;
+  --toast-border: rgba(0, 0, 0, 0.12);
+  --toast-success-accent: #16a34a;
+  --toast-error-accent: #dc2626;
+  --toast-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.15), 0 4px 16px -4px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
 
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-strong: rgba(0, 0, 0, 0.15);

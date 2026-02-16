@@ -29,7 +29,7 @@ const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect
   }, [currentIndex]);
 
   return (
-    <nav className="h-[80px] w-full md:h-full md:w-[120px] lg:w-[160px] flex-shrink-0 bg-[var(--bg-secondary)] border-b md:border-b-0 md:border-r border-[var(--border-subtle)] md:fixed md:left-0 md:top-0 md:bottom-0 z-40 flex md:flex-col overflow-hidden">
+    <nav aria-label="Navigazione lettere alfabeto" className="h-[80px] w-full md:h-full md:w-[120px] lg:w-[160px] flex-shrink-0 bg-[var(--bg-secondary)] border-b md:border-b-0 md:border-r border-[var(--border-subtle)] md:fixed md:left-0 md:top-0 md:bottom-0 z-40 flex md:flex-col overflow-hidden">
       
       {/* Brand / Logo Area */}
       <div className="hidden md:flex flex-col shrink-0">
@@ -42,8 +42,8 @@ const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect
          <div className="flex flex-col items-center gap-1 py-3 px-2 border-b border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
            {onThemeToggle && (
              <button
-               onClick={onThemeToggle}
-               className="text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors"
+              onClick={onThemeToggle}
+              className="text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors"
                aria-label={theme === 'dark' ? 'Passa al tema chiaro' : 'Passa al tema scuro'}
              >
                {theme === 'dark' ? 'Tema chiaro' : 'Tema scuro'}
@@ -53,6 +53,7 @@ const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect
              <button
                onClick={onRewatchIntro}
                className="text-[9px] font-bold uppercase tracking-widest text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors"
+               aria-label="Rivedi l'introduzione"
              >
                Rivedi intro
              </button>
@@ -69,6 +70,8 @@ const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect
             key={letter.id}
             ref={(el) => { buttonRefs.current[idx] = el; }}
             onClick={() => onSelect(idx)}
+            aria-label={`Lettera ${letter.name}, ${letter.char}`}
+            aria-current={idx === currentIndex ? 'true' : undefined}
             className={`
               relative group flex-shrink-0 snap-center
               w-[80px] h-full md:w-full md:h-[100px]
