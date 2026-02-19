@@ -68,29 +68,34 @@ const Credits: React.FC<{ isOpen: boolean; onClose: () => void; theme?: 'dark' |
             ZИАК // SYSTEM_REPORT
           </h2>
 
-          <div className={`font-mono text-sm md:text-base space-y-6 ${theme === 'light' ? 'text-gray-600' : 'text-[var(--text-secondary)]'}`}>
-            <p className={`font-black uppercase tracking-wider mb-3 ${theme === 'light' ? 'text-gray-800 opacity-60' : 'text-[var(--text-primary)] opacity-60'}`}>
-              TEAM:
-            </p>
-            <div>
-              <p className={`font-black uppercase tracking-wider mb-1 ${theme === 'light' ? 'text-black' : 'text-[var(--text-primary)]'}`}>
-                ALEXANDRA TANKOVA
+          <div className={`font-sans text-sm md:text-base space-y-6 ${theme === 'light' ? 'text-gray-600' : 'text-[var(--text-secondary)]'}`} style={{ fontFamily: 'var(--font-body)' }}>
+            <h3 className={`font-black text-lg uppercase tracking-wider mb-6 ${theme === 'light' ? 'text-gray-900' : 'text-[var(--text-primary)]'}`}>
+              IL TEAM
+            </h3>
+            <div className="space-y-1">
+              <p className={`font-bold ${theme === 'light' ? 'text-black' : 'text-[var(--text-primary)]'}`}>
+                Alexandra Tankova | UX Designer &amp; Author
               </p>
-              <p className={theme === 'light' ? 'text-gray-600 opacity-90' : 'opacity-90'}>&quot;The Puppet Master&quot; (Concept, Design & Human Intelligence).</p>
+              <p className={theme === 'light' ? 'text-gray-600' : 'text-[var(--text-secondary)]'}>Direzione creativa, architettura dell&apos;esperienza e supervisione umana</p>
+              <a
+                href="https://www.linkedin.com/in/alexandra-tankova/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-block mt-2 underline hover:no-underline ${theme === 'light' ? 'text-gray-700 hover:text-black' : 'text-[var(--accent-primary)] hover:text-[var(--accent-secondary)]'}`}
+                aria-label="LinkedIn di Alexandra Tankova (si apre in nuova scheda)"
+              >
+                LinkedIn
+              </a>
             </div>
 
-            <div>
-              <p className={`font-black uppercase tracking-wider mb-1 ${theme === 'light' ? 'text-black' : 'text-[var(--text-primary)]'}`}>
-                CURSOR AI
-              </p>
-              <p className={theme === 'light' ? 'text-gray-600 opacity-90' : 'opacity-90'}>&quot;The Code Monkey&quot; (Sviluppo instancabile sotto dettatura).</p>
+            <div className="space-y-1">
+              <p className={`font-bold ${theme === 'light' ? 'text-black' : 'text-[var(--text-primary)]'}`}>Cursor AI</p>
+              <p className={theme === 'light' ? 'text-gray-600' : 'text-[var(--text-secondary)]'}>&quot;The Code Monkey&quot; (Sviluppo instancabile sotto dettatura)</p>
             </div>
 
-            <div>
-              <p className={`font-black uppercase tracking-wider mb-1 ${theme === 'light' ? 'text-black' : 'text-[var(--text-primary)]'}`}>
-                GOOGLE AI STUDIO
-              </p>
-              <p className={theme === 'light' ? 'text-gray-600 opacity-90' : 'opacity-90'}>&quot;The Brainstormer&quot; (Supporto creativo e logico).</p>
+            <div className="space-y-1">
+              <p className={`font-bold ${theme === 'light' ? 'text-black' : 'text-[var(--text-primary)]'}`}>Google AI Studio</p>
+              <p className={theme === 'light' ? 'text-gray-600' : 'text-[var(--text-secondary)]'}>&quot;The Brainstormer&quot; (Supporto creativo e logico)</p>
             </div>
           </div>
 
