@@ -62,7 +62,7 @@ const Credits: React.FC<{ isOpen: boolean; onClose: () => void; theme?: 'dark' |
           exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           onClick={(e) => e.stopPropagation()}
-          className={`w-full max-w-xl flex flex-col gap-8 p-8 md:p-10 ${theme === 'light' ? 'bg-white text-black rounded-lg' : ''}`}
+          className={`w-full max-w-2xl flex flex-col gap-8 p-8 md:p-10 ${theme === 'light' ? 'bg-white text-black rounded-lg' : ''}`}
         >
           <h2 id={CREDITS_TITLE_ID} className={`font-black text-2xl md:text-3xl uppercase tracking-tighter ${theme === 'light' ? 'text-black' : 'text-[var(--text-primary)]'}`}>
             ZИАК // SYSTEM_REPORT
