@@ -123,7 +123,8 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg-primary)]/95 backdrop-blur-xl"
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
       role="presentation"
     >
       <motion.div
@@ -246,20 +247,15 @@ const WordSoulModal: React.FC<WordSoulModalProps> = ({ data, onClose }) => {
                   <button
                     onClick={speakWord}
                     disabled={isSpeaking}
-                    className="h-[48px] px-6 flex items-center justify-center gap-2 bg-[var(--bg-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    className={`h-[48px] px-6 flex items-center justify-center gap-2 bg-[var(--bg-elevated)] border border-[var(--border-subtle)] hover:border-[var(--border-strong)] rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed ${isSpeaking ? 'scale-[0.98] border-[var(--border-strong)]' : ''}`}
                     aria-label="Ascolta pronuncia"
+                    aria-busy={isSpeaking}
                   >
-                    {isSpeaking ? (
-                      <span>...</span>
-                    ) : (
-                      <>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M6 8.5a6.5 6.5 0 0 1 13 0c0 4.5-2.5 8-5 10-1.5 1.5-3.5 2.5-5.5 2.5a5.5 5.5 0 0 1-5.5-5.5V8.5" />
-                          <path d="M12 6v6l4 2" />
-                        </svg>
-                        <span>Ascolta la parola</span>
-                      </>
-                    )}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M6 8.5a6.5 6.5 0 0 1 13 0c0 4.5-2.5 8-5 10-1.5 1.5-3.5 2.5-5.5 2.5a5.5 5.5 0 0 1-5.5-5.5V8.5" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
+                    <span>Ascolta la parola</span>
                   </button>
                 </div>
               </motion.div>

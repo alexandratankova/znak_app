@@ -103,8 +103,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 2.2, delay: 1.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-medium text-sm md:text-base text-white/80"
-              style={{ letterSpacing: '-0.01em' }}
+              className="font-display font-medium text-[18px] md:text-[20px] text-white/80"
+              style={{ letterSpacing: '-0.01em', lineHeight: 1.35 }}
             >
               La tua guida nell&apos;alfabeto cirillico
             </motion.span>
@@ -112,8 +112,8 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 2.2, delay: 3, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-medium text-sm md:text-base text-white/80"
-              style={{ letterSpacing: '-0.01em' }}
+              className="font-display font-medium text-[18px] md:text-[20px] text-white/80"
+              style={{ letterSpacing: '-0.01em', lineHeight: 1.35 }}
             >
               dalle penne dei monaci alle corone degli Zar
             </motion.span>

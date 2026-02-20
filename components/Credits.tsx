@@ -49,8 +49,8 @@ const Credits: React.FC<{ isOpen: boolean; onClose: () => void; theme?: 'dark' |
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
         onClick={onClose}
-        className="fixed inset-0 z-[9999] backdrop-blur-xl flex items-center justify-center p-6"
-        style={{ backgroundColor: theme === 'light' ? 'rgba(255,255,255,0.95)' : 'rgba(0,0,0,0.95)' }}
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-6"
+        style={{ backgroundColor: theme === 'light' ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
         role="presentation"
       >
         <motion.div
