@@ -59,7 +59,7 @@ const Navigation: React.FC<NavigationProps> = ({ letters, currentIndex, onSelect
              </button>
            )}
          </div>
-      </div>
+       </div>
 
       <div 
         ref={navRef}

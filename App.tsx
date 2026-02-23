@@ -7,8 +7,12 @@ import HistoryIdentity from './components/HistoryIdentity';
 import InkGame from './components/InkGame';
 import WordSoulModal from './components/WordSoulModal';
 import IntroAnimation, { hasSeenIntro, resetIntroSeen } from './components/IntroAnimation';
-import Credits, { CreditsFooter } from './components/Credits';
+import CreditsFooter from './components/CreditsFooter';
+import InfoPage from './components/InfoPage';
 import ExpandableHistoryDrawer from './components/ExpandableHistoryDrawer';
+import AuthModal from './components/AuthModal';
+import { useAuth } from './contexts/AuthContext';
+import { useUserProgress } from './hooks/useUserProgress';
 
 const THEME_STORAGE_KEY = 'znak-theme';
 
@@ -17,8 +21,25 @@ const App: React.FC = () => {
   const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
   const [isGameOpen, setIsGameOpen] = useState(false);
   const [isWordSoulOpen, setIsWordSoulOpen] = useState(false);
-  const [tracedLetterIds, setTracedLetterIds] = useState<Set<string>>(() => new Set());
-  const [isCreditsOpen, setIsCreditsOpen] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [localTracedLetterIds, setLocalTracedLetterIds] = useState<Set<string>>(() => new Set());
+
+  const { user, signIn, signUp, signOut } = useAuth();
+  const { tracedLetterIds: remoteTracedIds, addTracedLetter } = useUserProgress(user?.id);
+
+  const tracedLetterIds = user ? remoteTracedIds : localTracedLetterIds;
+  const handleTraceComplete = useCallback(
+    (letterId: string) => {
+      if (user) {
+        addTracedLetter(letterId);
+      } else {
+        setLocalTracedLetterIds((prev) => new Set(prev).add(letterId));
+      }
+    },
+    [user, addTracedLetter]
+  );
+
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
     if (typeof window !== 'undefined') {
       return (localStorage.getItem(THEME_STORAGE_KEY) as 'dark' | 'light') || 'dark';
@@ -38,10 +59,6 @@ const App: React.FC = () => {
     resetIntroSeen();
     setShowIntro(true);
   };
-
-  const handleTraceComplete = useCallback((letterId: string) => {
-    setTracedLetterIds((prev) => new Set(prev).add(letterId));
-  }, []);
 
   const currentLetter = ALPHABET_DATA[currentLetterIndex];
   const isLetterTraced = tracedLetterIds.has(currentLetter.id);
@@ -102,10 +119,15 @@ const App: React.FC = () => {
           </div>
         </main>
 
-        {/* Footer Credits — in flow, gap costante dall'area interattiva */}
-        <CreditsFooter onOpen={() => setIsCreditsOpen(true)} />
+        {/* Footer Credits + Account — in flow, gap costante dall'area interattiva */}
+        <CreditsFooter
+          onOpen={() => setIsInfoOpen(true)}
+          onOpenAuth={() => setIsAuthOpen(true)}
+          onSignOut={signOut}
+          isLoggedIn={!!user}
+        />
 
-        <Credits isOpen={isCreditsOpen} onClose={() => setIsCreditsOpen(false)} theme={theme} />
+        <InfoPage isOpen={isInfoOpen} onClose={() => setIsInfoOpen(false)} />
 
       <AnimatePresence>
         {isGameOpen && (
@@ -123,6 +145,13 @@ const App: React.FC = () => {
           />
         )}
       </AnimatePresence>
+
+      <AuthModal
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+        onSignIn={signIn}
+        onSignUp={signUp}
+      />
     </motion.div>
     </>
   );

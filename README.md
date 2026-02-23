@@ -8,6 +8,7 @@ App interattiva per esplorare l'alfabeto cirillico: lettere, pronuncia, storia e
 - Vite
 - Framer Motion
 - Tailwind CSS
+- Supabase (Auth + progressi) – vedi [SUPABASE_SETUP.md](./SUPABASE_SETUP.md)
 
 ## Sviluppo
 

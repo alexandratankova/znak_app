@@ -1,23 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-interface CreditsFooterProps {
-  onOpen: () => void;
-}
-
-export const CreditsFooter: React.FC<CreditsFooterProps> = ({ onOpen }) => (
-  <footer className="flex-shrink-0 py-2.5 px-4 flex justify-center md:justify-end border-t border-[var(--border-subtle)]">
-    <button
-      type="button"
-      onClick={onOpen}
-      className="font-mono text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-[var(--text-primary)] opacity-30 hover:opacity-100 transition-opacity"
-      aria-label="Apri Credits"
-    >
-      INFO // CREDITS
-    </button>
-  </footer>
-);
-
 const CREDITS_TITLE_ID = 'credits-dialog-title';
 
 const Credits: React.FC<{ isOpen: boolean; onClose: () => void; theme?: 'dark' | 'light' }> = ({ isOpen, onClose, theme = 'dark' }) => {
