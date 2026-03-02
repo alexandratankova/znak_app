@@ -122,9 +122,6 @@ const App: React.FC = () => {
         {/* Footer Credits + Account — in flow, gap costante dall'area interattiva */}
         <CreditsFooter
           onOpen={() => setIsInfoOpen(true)}
-          onOpenAuth={() => setIsAuthOpen(true)}
-          onSignOut={signOut}
-          isLoggedIn={!!user}
         />
 
         <InfoPage isOpen={isInfoOpen} onClose={() => setIsInfoOpen(false)} />

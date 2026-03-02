@@ -45,33 +45,38 @@ const InfoPage: React.FC<InfoPageProps> = ({ isOpen, onClose }) => {
           </h2>
 
           <div className="font-sans text-sm md:text-base space-y-6 text-gray-300 text-left w-full" style={{ fontFamily: 'var(--font-body)' }}>
-            <h3 className="font-black text-lg uppercase tracking-wider mb-6 text-white">
-              IL TEAM
-            </h3>
             <div className="space-y-1">
               <p className="font-bold text-white">
                 Alexandra Tankova | UX Designer &amp; Author
               </p>
-              <p className="text-gray-400">Direzione creativa, architettura dell&apos;esperienza e supervisione umana</p>
-              <a
-                href="https://www.linkedin.com/in/alexandra-tankova/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-2 underline hover:no-underline text-[var(--accent-primary)] hover:text-[var(--accent-secondary)]"
-                aria-label="LinkedIn di Alexandra Tankova (si apre in nuova scheda)"
-              >
-                LinkedIn
-              </a>
+              <p className="text-gray-400">Direzione creativa, architettura dell&apos;esperienza e supervisione umana.</p>
+              <p className="text-gray-400 mt-2">
+                <span className="font-bold text-white">💬 Connettiamoci (o facciamo due chiacchiere):</span>{' '}
+                <a
+                  href="https://www.linkedin.com/in/alexandra-tankova/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:no-underline text-[var(--accent-primary)] hover:text-[var(--accent-secondary)] font-bold"
+                  aria-label="LinkedIn di Alexandra Tankova (si apre in nuova scheda)"
+                >
+                  LinkedIn
+                </a>
+              </p>
             </div>
 
             <div className="space-y-1">
-              <p className="font-bold text-white">Cursor AI</p>
-              <p className="text-gray-400">&quot;The Code Monkey&quot; (Sviluppo instancabile sotto dettatura)</p>
+              <p className="font-bold text-white">Cursor AI &quot;The Code Monkey&quot;</p>
+              <p className="text-gray-400">(Sviluppo instancabile sotto dettatura)</p>
             </div>
 
             <div className="space-y-1">
-              <p className="font-bold text-white">Google AI Studio</p>
-              <p className="text-gray-400">&quot;The Brainstormer&quot; (Supporto creativo e logico)</p>
+              <p className="font-bold text-white">Google AI Studio &quot;The Brainstormer&quot;</p>
+              <p className="text-gray-400">(Supporto creativo e logico)</p>
+            </div>
+
+            <div className="space-y-1 pt-4">
+              <p className="font-bold text-white">📡 Status del Progetto:</p>
+              <p className="text-gray-400">Work in progress: Dalla А alla Я, stiamo accordando le frequenze di Znak in tempo reale. Il progetto è in una fase di vibe-tuning permanente.</p>
             </div>
           </div>
 
